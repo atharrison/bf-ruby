@@ -83,7 +83,7 @@ module BF
     end
 
     def log_status
-      puts "#{program.cmd_ptr}\t#{program.current_command}\t#{program.data_ptr}\t#{program.current_data}\t#{program.data_range(0..30)}"
+      #puts "#{program.cmd_ptr}\t#{program.current_command}\t#{program.data_ptr}\t#{program.current_data}\t#{program.data_range(0..30)}"
     end
   end
 end

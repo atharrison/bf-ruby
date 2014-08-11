@@ -17,7 +17,6 @@ module BF
     end
 
     def current_command
-      #binding.pry
       instructions[cmd_ptr]
     end
 
@@ -30,48 +29,14 @@ module BF
     end
 
     def execute_current_command
-      @cmd_ptr = Instruction.act(current_command,self)
+      @cmd_ptr = Instruction.act(current_command, self)
+    end
 
-      #case current_command
-      #
-      #when '>'
-      #  @data_ptr += 1
-      #  @cmd_ptr += 1
-      #when '<'
-      #  @data_ptr -= 1
-      #  @cmd_ptr += 1
-      #when '+'
-      #  @data[@data_ptr] += 1
-      #  @cmd_ptr += 1
-      #when '-'
-      #  @data[@data_ptr] -= 1
-      #  @cmd_ptr += 1
-      #when '.'
-      #  print @data[@data_ptr].chr
-      #  @cmd_ptr += 1
-      #when ','
-      #  if @input_tokens.length == 0
-      #    @input_tokens = STDIN.readline.scan(/./).push("\n")
-      #  end
-      #  @data[@data_ptr] = @input_tokens.shift
-      #  @cmd_ptr += 1
-      #when '['
-      #  open_to_close(@cmd_ptr)
-      #  if @data[@data_ptr] == 0
-      #    @cmd_ptr = open_to_close(@cmd_ptr) + 1
-      #  else
-      #    @cmd_ptr += 1
-      #  end
-      #when ']'
-      #  if @data[@data_ptr] != 0
-      #    @cmd_ptr = close_to_open(@cmd_ptr) + 1
-      #  else
-      #    @cmd_ptr += 1
-      #  end
-      #else
-      #  #Ignore
-      #end
-
+    def read_input
+      if @input_tokens.length == 0
+        @input_tokens = STDIN.readline.scan(/./).push("\n")
+      end
+      @data[@data_ptr] = @input_tokens.shift
     end
 
     def open_to_close(open_paren_ptr)

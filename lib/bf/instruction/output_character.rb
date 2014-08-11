@@ -3,7 +3,7 @@ module BF
     class OutputCharacter
 
       def call(program)
-        binding.pry
+        #binding.pry
         print program.data[program.data_ptr].chr
         program.cmd_ptr + 1
       end

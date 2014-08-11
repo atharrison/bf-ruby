@@ -3,9 +3,9 @@ module BF
 
     def self.act(command, program)
       return if instructions[command].nil?
-      next_ptr = instructions[command].call(program)
-      binding.pry if next_ptr.nil?
-      program.cmd_ptr = instructions[command].call(program)
+      #next_ptr = instructions[command].call(program)
+      #binding.pry if next_ptr.nil?
+      instructions[command].call(program)
     end
 
     def self.instructions

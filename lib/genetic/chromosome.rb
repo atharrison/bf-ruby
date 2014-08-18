@@ -34,7 +34,7 @@ module Genetic
       #puts "Calculating Fitness for #{genes}"
       output = execute_safely(genes) || ''
       fitness_value = [(output.length > 0), output.include?('h'), output.include?('i'), output == 'hi'].reduce(0) {|sum, val| sum += 1 if  val; sum}
-      puts "Executed #{genes} -=- [#{output}] -=- #{fitness_value}" if rand > 0.95
+      puts "Executed #{genes} -=- [#{output}] -=- #{fitness_value}" if rand > 0.98
       fitness_value
     end
 

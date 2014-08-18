@@ -28,6 +28,14 @@ module BF
           ']' => JUMP_RETURN,
       }
     end
+
+    def self.keys
+      @keys ||= instructions.keys
+    end
+
+    def self.valid_alleles
+      keys.reject{|a| a == ','}
+    end
   #
   #  def call(program)
   #    raise 'sub-classes implement details'

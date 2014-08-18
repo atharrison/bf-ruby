@@ -3,10 +3,14 @@ module BF
 
     DATA_SIZE = 30_000
 
-    attr_accessor :cmd_ptr, :data_ptr, :instructions, :data
+    attr_accessor :cmd_ptr, :data_ptr, :instructions, :data, :output
 
     def initialize(args)
       @instructions = args[:instructions]
+
+      #binding.pry
+      @valid = validate_program
+
       @data = Array.new(DATA_SIZE) { |idx| 0 }
 
       @cmd_ptr = 0
@@ -14,6 +18,7 @@ module BF
       @open_to_close_hash = {}
       @close_to_open_hash = {}
       @input_tokens = []
+      @output = ''
     end
 
     def current_command
@@ -50,7 +55,7 @@ module BF
       loop do
         curr_ptr += 1
         command = instructions[curr_ptr]
-        raise "Off the end" if curr_ptr > instructions.length
+        raise Exception "Off the end" if curr_ptr > instructions.length
         if command == '['
           depth += 1
         elsif command == ']'
@@ -73,8 +78,12 @@ module BF
     end
 
     def terminated?
-      cmd_ptr >= instructions.length
+      cmd_ptr >= instructions.length || !@valid
     end
 
+    def validate_program
+      @instructions.scan(/./).select{|i| i == '['}.count ==
+        @instructions.scan(/./).select{|i| i == ']'}.count
+    end
   end
 end

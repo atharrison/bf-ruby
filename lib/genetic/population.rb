@@ -3,8 +3,9 @@ module Genetic
 
     attr_accessor :chromosomes
 
-    def initialize
+    def initialize(args)
       self.chromosomes = Array.new
+      @fitness_proc = args[:fitness_proc]
     end
 
     def inspect
@@ -14,7 +15,16 @@ module Genetic
     def seed!
       chromosomes = Array.new
       1.upto(POPULATION_SIZE).each do
-        chromosomes << ::Genetic::Chromosome.new
+        chromosomes << ::Genetic::Chromosome.new(fitness_proc: @fitness_proc)
+      end
+
+      self.chromosomes = chromosomes
+    end
+
+    def seed_with_genes!(gene_proc)
+      chromosomes = Array.new
+      1.upto(POPULATION_SIZE).each do
+        chromosomes << ::Genetic::Chromosome.new(genes: gene_proc.call)
       end
 
       self.chromosomes = chromosomes

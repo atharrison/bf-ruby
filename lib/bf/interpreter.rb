@@ -8,7 +8,8 @@ module BF
     end
 
     def execute
-      puts "Executing program:\n #{program.instructions}\n\n"
+      #binding.pry
+      #puts "Executing program:\n #{program.instructions}\n\n"
 
       begin
         loop do
@@ -19,13 +20,14 @@ module BF
       rescue EOFError
         # Finished
       rescue => ex
-        log_status
-        puts ex.message
-        puts ex.backtrace
-        binding.pry
+        #log_status
+        #puts ex.message
+        #puts ex.backtrace
+        #binding.pry
       end
 
-      puts "Done"
+      #puts "Done"
+      program.output
     end
 
     def load_program(program)

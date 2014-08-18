@@ -1,4 +1,5 @@
 require 'require_all'
+require 'timeout'
 
 module BF
 
